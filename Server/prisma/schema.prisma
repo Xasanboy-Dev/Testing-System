@@ -27,6 +27,7 @@ model Pupil {
     bio          String?
     currentClass String
     solvedTests  Solvedtests[]
+    password     String
 }
 
 model Teacher {
@@ -38,7 +39,9 @@ model Teacher {
     pupils       Pupil[]
     school       School  @relation(fields: [schoolId], references: [id])
     schoolId     Int
+    password     String
     createdTests Int[]
+    phoneNumber  String  @unique
 }
 
 model Test {
