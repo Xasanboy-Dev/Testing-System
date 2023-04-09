@@ -6,16 +6,20 @@ export default function Navbar({ toggle, setToggle }: { toggle: string, setToggl
         let mood = localStorage.getItem('toggle')
         setToggle(mood!)
     })
-    let user = false
+
+    let user = {
+        name: "Xasanboy",
+        lastname: "Abdurasulov"
+    }
     const handleToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
         localStorage.setItem("toggle", e.target.checked.toString())
         setToggle(e.target.checked.toString())
     }
     return (
-        <div className={`flex justify-between bg-${toggle == "true" ? "white" : "black"} text-2xl border rounded mx-1 border-${toggle == "true" ? "black" : "white"} items-center`}>
+        <div className={`flex mx-auto justify-between bg-${toggle == "true" ? "white" : "black"} text-2xl border rounded mx-1 border-${toggle == "true" ? "black" : "white"} items-center`}>
             <h1 className={`px-3 py-1 border bg-${toggle == "true" ? "white" : "black"} border-${toggle == 'true' ? "black" : "white"}
              rounded mx-5 my-3`}>
-                <span className={`text-${toggle == "true" ? "black" : "white"}`}>Testing System</span>
+                <NavLink to={"/"} className={`text-${toggle == "true" ? "black" : "white"}`}>Testing System</NavLink>
             </h1>
             <div className="flex items-center">
                 <i className={`text-white border  border-black ${toggle == "true" ? "hidden" : ""} bi bi-moon-fill`}></i>
@@ -31,7 +35,8 @@ export default function Navbar({ toggle, setToggle }: { toggle: string, setToggl
                 <NavLink to={"/login"} className={`rounded justify-between text-${toggle == "true" ? "black" : "white"} flex px-2 py-1 bg-${toggle == "true" ? "white" : "black"} border border-${toggle == "true" ? "black" : "white"} mx-[30px] ${user ? "hidden" : ""} `}>Sign up</NavLink>
             </div>
             <div className={`${user ? "" : "hidden"}`}>
-
+                <NavLink to={"/admin/"} className={`border border-${toggle == "true" ? "black" : "white"} px-3 rounded text-${toggle == "true" ? "black" : "white"}
+                cursor-pointer mx-5`}>{user.name}</NavLink>
             </div>
         </div>
     )

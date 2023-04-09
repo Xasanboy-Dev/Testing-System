@@ -10,8 +10,9 @@ function App() {
     setToggle(mood!)
   })
   const routes = useRoutes([
-    { path: "/admin", element: <AdminPage /> },
-    { path: "/home", element: <HomePage setToggle={setToggle} toggle={toggle} /> },
+    { path: "/admin", element: <AdminPage setToggle={setToggle} toggle={toggle} /> },
+    { path: "/admin/:id", element: <AdminPage setToggle={setToggle} toggle={toggle} /> },
+    { path: "/", element: <HomePage setToggle={setToggle} toggle={toggle} /> },
     { path: "*", element: <NotFouund /> },
   ])
   return routes

@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react"
 import Navbar from "./Navbar/Navbar"
+import { NavLink } from "react-router-dom"
 export default function HomePage({ toggle, setToggle }: { toggle: string, setToggle: (toggle: string) => void }) {
     return (
-        <div className={`text-2xl  bg-${toggle == "true" ? "white" : "black"}`} style={{ height: innerHeight }}>
+        <div className={`text-2xl  bg-${toggle == "true" ? "white" : "black"}`}>
             <Navbar setToggle={setToggle} toggle={toggle} />
-            <span className={``}>
+            <div style={{ height: innerHeight }}>
                 <h1 className={`flex justify-center text-3xl text-${toggle == "true" ? "black" : "white"} my-2`}>About examination</h1>
-                <h1 className={` mx-[250px] cursor-pointer text-${toggle == "true" ? "black" : "white"}`}>
+                <h1 className={`py-5 mx-[250px] cursor-pointer text-${toggle == "true" ? "black" : "white"}`}>
                     An examination (exam or evaluation) or test is an educational assessment intended to measure a test-taker's knowledge, skill, aptitude, physical fitness, or classification in many other topics (e.g., beliefs). A test may be administered verbally, on paper, on a computer, or in a predetermined area that requires a test taker to demonstrate or perform a set of skills.
 
                     Tests vary in style, rigor and requirements. There is no general consensus or invariable standard for test formats and difficulty. Often, the format and difficulty of the test is dependent upon the educational philosophy of the instructor, subject matter, class size, policy of the educational institution, and requirements of accreditation or governing bodies.
@@ -15,9 +16,9 @@ export default function HomePage({ toggle, setToggle }: { toggle: string, setTog
 
                     A test may be developed and administered by an instructor, a clinician, a governing body, or a test provider. In some instances, the developer of the test may not be directly responsible for its administration. For example, Educational Testing Service (ETS), a nonprofit educational testing and assessment organization, develops standardized tests such as the SAT but may not directly be involved in the administration or proctoring of these tests.
                 </h1>
-            </span>
-            <div>
-                <button>Go to the Test</button>
+                <div className={`text-${toggle == "true" ? "black" : "white"} w-full flex justify-center bg-${toggle == "true" ? "white" : "black"}`}>
+                    <NavLink className={`border my-4 px-4 py-1 rounded border-${toggle == "true" ? "black" : "white"}`} to={"/test"}>Testing</NavLink>
+                </div>
             </div>
         </div>
     )
