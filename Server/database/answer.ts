@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-export function getAllAnswers() {
+export function findAllAnswers() {
   return prisma.answers.findMany({
     include: {
       test: true,
@@ -9,7 +9,7 @@ export function getAllAnswers() {
   });
 }
 
-export function getOneAnswer({ id }: { id: number }) {
+export function getOneAnswer(id: number) {
   return prisma.answers.findUnique({
     where: {
       id,
@@ -19,23 +19,16 @@ export function getOneAnswer({ id }: { id: number }) {
     },
   });
 }
-export function addAnswer({ testId, text }: { text: string; testId: number }) {
+export function addAnswer(text: string, testId: number, ownerID: number) {
   return prisma.answers.create({
     data: {
       text,
       testId,
+      ownerId: ownerID,
     },
   });
 }
-export function editAnswer({
-  id,
-  testId,
-  text,
-}: {
-  id: number;
-  text: string;
-  testId: number;
-}) {
+export function editAnswer(id: number, text: string, testId: number) {
   return prisma.answers.update({
     data: {
       text,
@@ -46,7 +39,7 @@ export function editAnswer({
     },
   });
 }
-export function deleteAnswer({ id }: { id: number }) {
+export function deleteAnswer(id: number) {
   return prisma.answers.delete({
     where: {
       id,

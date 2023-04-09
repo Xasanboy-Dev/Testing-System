@@ -90,8 +90,8 @@ export async function createPupil(req: Request, res: Response) {
 export async function UpdatePupil(req: Request, res: Response) {
   try {
     const token = req.headers.authorization;
-    const { id } = req.params;
     const {
+      id,
       name,
       lastname,
       phoneNumber,

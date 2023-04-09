@@ -9,7 +9,7 @@ export function findAllTests() {
   });
 }
 
-export function findOneTest({ id }: { id: number }) {
+export function findOneTest(id: number) {
   return prisma.test.findUnique({
     where: {
       id,
@@ -20,15 +20,16 @@ export function findOneTest({ id }: { id: number }) {
   });
 }
 
-export function addTest({ text }: { text: string }) {
+export function addTest(text: string, ownerID: number) {
   return prisma.test.create({
     data: {
       text,
+      ownerId: ownerID,
     },
   });
 }
 
-export function editTest({ id, text }: { id: number; text: string }) {
+export function editTest(id: number, text: string) {
   return prisma.test.update({
     data: {
       text,
@@ -39,7 +40,7 @@ export function editTest({ id, text }: { id: number; text: string }) {
   });
 }
 
-export function removeTest({ id }: { id: number }) {
+export function removeTest(id: number) {
   return prisma.test.delete({
     where: { id },
   });

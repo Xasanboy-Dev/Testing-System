@@ -50,13 +50,15 @@ model Test {
     answers      Answers[]
     createdDate  DateTime  @default(now())
     finishedDate DateTime?
+    ownerId      Int
 }
 
 model Answers {
-    id     Int    @id @default(autoincrement())
-    text   String
-    test   Test?  @relation(fields: [testId], references: [id])
-    testId Int?
+    id      Int    @id @default(autoincrement())
+    text    String
+    test    Test?  @relation(fields: [testId], references: [id])
+    testId  Int?
+    ownerId Int
 }
 
 model Solvedtests {
