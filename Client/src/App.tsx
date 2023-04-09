@@ -1,15 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
-import { Router, Route, Routes } from "react-router-dom"
+import { useRoutes } from 'react-router-dom'
+import AdminPage from './Pages/Admin'
+import NotFouund from './Pages/NotFound'
+import HomePage from './Pages/HomePage'
+import { useEffect, useState } from 'react'
 function App() {
-  return (
-    <div>
-      <Routes>
-        <Route path='/' element="" />
-      </Routes>
-    </div>
-  )
+  const [toggle, setToggle] = useState("")
+  useEffect(() => {
+    let mood = localStorage.getItem("toggle")
+    setToggle(mood!)
+  })
+  const routes = useRoutes([
+    { path: "/admin", element: <AdminPage /> },
+    { path: "/home", element: <HomePage setToggle={setToggle} toggle={toggle} /> },
+    { path: "*", element: <NotFouund /> },
+  ])
+  return routes
 }
 
 export default App
